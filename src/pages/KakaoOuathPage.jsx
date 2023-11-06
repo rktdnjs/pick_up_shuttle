@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-// import { getLoginInfo } from '../apis/register';
-import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import { getLoginInfo } from '../apis/register';
+// import axios from 'axios';
 import { loginSuccessMessage } from '../utils/alert';
 import Loader from '../components/atoms/Loader';
 import routes from '../constant/routes';
@@ -12,18 +13,14 @@ const KakaoOuathPage = () => {
   // params로 받은 인가 코드를 code 변수에 저장
   // const kakaoOauthCode = new URL(window.location.href).searchParams.get('code');
   const navigate = useNavigate();
+  const { data } = useQuery(['getLoginInfo'], getLoginInfo);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get('localhost:8080/login/callback');
-        console.log(response);
-        Swal.fire(loginSuccessMessage);
-        navigate(routes.home);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
+    if (data) {
+      console.log(data);
+      Swal.fire(loginSuccessMessage);
+      navigate(routes.home);
+    }
   }, []);
 
   // useEffect(() => {
