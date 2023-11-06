@@ -18,10 +18,15 @@ const KakaoOuathPage = () => {
   useEffect(() => {
     if (data) {
       console.log(data);
-      Swal.fire(loginSuccessMessage);
-      navigate(routes.home);
+      Swal.fire(loginSuccessMessage).then(navigate(routes.home));
     }
   }, []);
+
+  // useEffect(() => {
+  //   const response = getLoginInfo();
+  //   console.log(response);
+  //   navigate(routes.home);
+  // }, []);
 
   // useEffect(() => {
   //   const response = getLoginInfo();
