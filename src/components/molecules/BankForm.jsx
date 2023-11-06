@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import Button from '../atoms/button/Button';
 import banks from '../../constant/bank';
 import routes from '../../constant/routes';
-import registerBank from '../../apis/register';
+import { registerBank } from '../../apis/register';
 import { bankInvalidMessage, unknownErrorMessage, registerCompleteMessage } from '../../utils/alert';
 
 const BankForm = () => {

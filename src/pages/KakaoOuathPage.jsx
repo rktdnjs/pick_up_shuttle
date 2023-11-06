@@ -1,28 +1,21 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import axios from 'axios';
-import { loginSuccessMessage } from '../utils/alert';
+// import { useNavigate } from 'react-router-dom';
+// import Swal from 'sweetalert2';
+import { getLoginInfo } from '../apis/register';
+// import { loginSuccessMessage } from '../utils/alert';
 import Loader from '../components/atoms/Loader';
-import routes from '../constant/routes';
+// import routes from '../constant/routes';
 
 // 리다이렉팅 처리 화면
 const KakaoOuathPage = () => {
   // params로 받은 인가 코드를 code 변수에 저장
   // const kakaoOauthCode = new URL(window.location.href).searchParams.get('code');
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.get('localhost:8000/login/callback');
-        console.log(response);
-        Swal.fire(loginSuccessMessage);
-        navigate(routes.home);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
+    const response = getLoginInfo();
+    console.log(response);
+    console.log('로그인 완료');
   }, []);
 
   // 토큰 발급 이후 서비스 사용을 위해 임시로 가볍게 만든 토큰 발급 코드
