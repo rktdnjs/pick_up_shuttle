@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-// import axios from 'axios';
+import axios from 'axios';
 import { loginSuccessMessage } from '../utils/alert';
 import Loader from '../components/atoms/Loader';
 import routes from '../constant/routes';
@@ -9,27 +9,40 @@ import routes from '../constant/routes';
 // 리다이렉팅 처리 화면
 const KakaoOuathPage = () => {
   // params로 받은 인가 코드를 code 변수에 저장
-  const kakaoOauthCode = new URL(window.location.href).searchParams.get('code');
+  // const kakaoOauthCode = new URL(window.location.href).searchParams.get('code');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get('localhost:8000/login/callback');
+        console.log(response);
+        Swal.fire(loginSuccessMessage);
+        navigate(routes.home);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
 
   // 토큰 발급 이후 서비스 사용을 위해 임시로 가볍게 만든 토큰 발급 코드
   // 실제 과정은 인가 코드를 백엔드 API로 보내고 나서 토큰 정보를 발급받아 이용하게 된다.
   // 우선은 임시 토큰을 이용하여 이를 서비스 이용시 인증하는데 사용!
-  useEffect(() => {
-    setTimeout(() => {
-      if (kakaoOauthCode) {
-        try {
-          console.log(kakaoOauthCode);
-          localStorage.setItem('accessToken', 'token');
-          localStorage.setItem('userAuth', 'user');
-          localStorage.setItem('username', '김김김');
-          Swal.fire(loginSuccessMessage).then(navigate(routes.home));
-        } catch (error) {
-          // console.log(error);
-        }
-      }
-    }, [2000]);
-  }, [kakaoOauthCode]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (kakaoOauthCode) {
+  //       try {
+  //         console.log(kakaoOauthCode);
+  //         localStorage.setItem('accessToken', 'token');
+  //         localStorage.setItem('userAuth', 'user');
+  //         localStorage.setItem('username', '김김김');
+  //         Swal.fire(loginSuccessMessage).then(navigate(routes.home));
+  //       } catch (error) {
+  //         // console.log(error);
+  //       }
+  //     }
+  //   }, [2000]);
+  // }, [kakaoOauthCode]);
 
   // 백엔드 API에 get을 요청하여 인가코드를 보내는 형태
   // useEffect(() => {

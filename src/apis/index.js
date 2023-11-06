@@ -8,7 +8,10 @@ export const instance = axios.create({
   timeout: 1000, // 타임아웃이 없으면 무한정 wait가 걸려버릴 수 있음
   headers: {
     'Content-Type': 'application/json', // 서버단에서 JSON 형태를 많이써서, 프론트단에서 쏴줄 때 이러한 형태로 많이 쓴다(헤더 기본 설정)
+    // 'Access-Control-Allow-Origin': 'http://localhost:8080',
+    // 'Access-Control-Allow-Credentials': 'true',
   },
+  withCredentials: true,
 });
 
 // request - 요청
