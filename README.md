@@ -138,3 +138,33 @@ $ npm start
 ## 페이지별 화면구성과 주요 기능
 
 ## 아키텍쳐
+
+> Atomic Design Pattern 적용
+
+### 디렉터리 구조
+
+```
+📁 public
+📁 src
+├── 📁 apis
+├── 📁 assets
+│   └─ 📁 images
+├── 📁 components(아토믹 패턴 적용)
+│   ├─ 📁 atoms
+│   ├─ 📁 layout
+│   ├─ 📁 molecules
+│   ├─ 📁 organisms
+│   └─ 📁 templates
+├── 📁 constant
+├── 📁 mocks
+├── 📁 pages
+├── 📁 styles
+├── 📁 utils
+├── App.js
+├── global.css
+└── index.js
+```
+
+### 참고
+
+[![Notion](https://img.shields.io/badge/12조_Notion-orange?&logo=Notion)](https://bronzed-amount-986.notion.site/3-0f2568d4eb0349408dca2f133aa29534)
