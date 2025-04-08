@@ -227,9 +227,17 @@ $ npm start
 
 ## 아키텍쳐
 
-> Atomic Design Pattern 적용
+> 프론트엔드
+
+![Group 73](https://github.com/user-attachments/assets/7e1ede91-8e8b-4ff4-b0a5-bb41c0b46b45)
+
+> 백엔드
+
+![Group 39616](https://github.com/user-attachments/assets/941d0ee0-c221-4f29-b1c6-c0d148cb1a2f)
 
 ### 디렉터리 구조
+
+> Atomic Design Pattern 적용
 
 ```
 📁 public
